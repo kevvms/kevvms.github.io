@@ -21,7 +21,7 @@
 title: kev's blog
 email: kevinm.s@outlook.co.id
 description: >- # this means to ignore newlines until "baseurl:"
-  Hi there! This blog is a mix of programming notes, experiments, and random thoughts. Sometimes it's about programming, snippets, fixes, little discoveries I meade, and sometimes it's just casual stuff that doesn't fit anywhere else! It's like a laid-back corner for tech and everyday stuff, all in one place.
+  Hi there! This blog is a mix of programming notes, experiments, and random thoughts. Sometimes it's about programming, snippets, fixes, little discoveries I made, and sometimes it's just casual stuff that doesn't fit anywhere else.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kevvms.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
