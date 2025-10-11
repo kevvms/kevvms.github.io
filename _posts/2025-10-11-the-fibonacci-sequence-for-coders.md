@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "The Fibonacci Sequence for Coders"
@@ -11,23 +10,23 @@ The Fibonacci Sequence is one of the most foundational patterns in mathematics, 
 
 ## The Structure
 
-The sequence begins with 0 and 1. Let \( F_n \) represent the n-th term. The sequence is defined recursively as:
+The sequence begins with 0 and 1. Let $$ F_n  $$ represent the n-th term. The sequence is defined recursively as:
 
-\[
+$$
 F_n = F_{n-1} + F_{n-2}, \quad \text{for } n \ge 2
-\]
+$$
 
 with the base cases:
 
-\[
+$$
 F_0 = 0, \quad F_1 = 1
-\]
+$$
 
 Thus, the sequence unfolds as:
 
-\[
+$$
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \dots
-\]
+$$
 
 ---
 
