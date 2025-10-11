@@ -33,7 +33,6 @@ This comment clarifies the **business logic constraint**, making the code more r
 ---
 
 ## Justify Intentional Deviations
-
 When you deliberately choose a simple, clear implementation over a more "clever" or terse alternative, document that decision. This prevents future maintainers from wasting time trying to "optimize" or rewrite code that was intentionally kept simple for a good reason.
 
 ~~~js
