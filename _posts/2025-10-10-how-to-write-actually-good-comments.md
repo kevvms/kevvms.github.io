@@ -45,7 +45,7 @@ for user in users:
 
 ---
 
-## ⚠️ Document Assumptions and Potential Breakpoints
+## Document Assumptions and Potential Breakpoints
 
 If a section of code relies on a specific external condition or assumption, mark that dependency clearly. This creates a critical debugging note for the future, should that external condition change.
 
@@ -57,7 +57,7 @@ const data = fetchData();
 
 ---
 
-## ⚙️ Explain Your Workarounds
+## Explain Your Workarounds
 
 Code that implements a workaround for a specific bug (e.g., a browser-specific issue, an external library bug) must be documented. Without context, these essential fixes look like errors and are often mistakenly removed.
 
