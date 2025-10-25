@@ -26,15 +26,27 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kevvms.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ""
 github_username:  kevinmichaelsn
+
+author:
+  name: kev
+  email: kevinm.s@outlook.co.id
+  social:
+    email: kevinm.s@outlook.co.id
+    github: kevinmichaelsn
+    instagram: kevv.michael_
+
 hydejack:
-  font: "Inter, sans-serif"
-  font_heading: "Fira Sans, sans-serif"
+  dark_mode:
+    dynamic: true
+    icon: true
 
 # Build settings
 remote_theme: hydecorp/hydejack@v9.2.1
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+include:
+  - assets/fonts
 
 # Exclude from processing.
 # The following items will not be processed, by default.
