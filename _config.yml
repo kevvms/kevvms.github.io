@@ -35,6 +35,10 @@ author:
     github: kevinmichaelsn
     instagram: kevv.michael_
 
+accent_image: /assets/img/sidebar-bg.jpg
+accent_color: #87CEEB
+theme_color: #D5DCE5
+
 hydejack:
   dark_mode:
     dynamic: true
@@ -45,8 +49,33 @@ remote_theme: hydecorp/hydejack@v9.2.1
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-minifier
 include:
   - assets/fonts
+
+google_fonts: false
+
+kramdown:
+  math_engine: none
+
+jekyll-minifier:
+  uglify_js: true
+  compress_js: true
+  uglify_css: true
+  compress_css: true
+  remove_comments: true
+  remove_intertag_spaces: true
+  collapse_whitespace: true
+  simple_doctype: true
+  remove_script_type_attributes: true
+  remove_style_link_type_attributes: true
+  remove_optional_tags: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      invert_sidebar: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.

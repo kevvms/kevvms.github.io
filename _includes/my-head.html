@@ -4,12 +4,42 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bitcount';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/BitcountGridSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf') format('truetype');
 }
 :root {
-  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  --font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
   --font-family-heading: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
   --font-weight: 400;
   --font-weight-heading: 300;
+}
+.sidebar-bg::after {
+  /* background: none !important; */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15)) !important;
+}
+.sidebar-about > a.sidebar-title > h2 {
+  font-family: 'Bitcount', monospace;
+  font-weight: 500;
+}
+.sidebar {
+  color: rgba(0,0,0,1) !important;
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #edf1f5;
+  }
 }
 </style>
