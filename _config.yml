@@ -24,12 +24,17 @@ description: >- # this means to ignore newlines until "baseurl:"
   code notes, experiments, and snippets.. you name it.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kevvms.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+logo: /assets/img/avatar.png
+favicon: /assets/img/avatar-circle.ico
 twitter_username: ""
 github_username:  kevinmichaelsn
 
 author:
   name: kev
   email: kevinm.s@outlook.co.id
+  picture: /assets/img/avatar.png
+  about: |
+    Hey there, I'm Kevin, a developer who spends way too much time debugging and way too little time sleeping. I started this blog to dump all the random code experiments, tutorials, and thoughts that pop into my head during late-night coding sessions. Whether it's a weird bug fix, a new framework I'm messing with, or just ranting about tech trends, you'll find it here. Hope you stumble upon something useful or at least entertaining. Stick around!
   social:
     email: kevinm.s@outlook.co.id
     github: kevinmichaelsn
@@ -54,6 +59,10 @@ include:
   - assets/fonts
 
 google_fonts: false
+
+menu:
+  - title: About Me
+    url: /about/
 
 kramdown:
   math_engine: none

@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: about
 title: About
 permalink: /about/
 ---
 
-Hey, I'm Kevin. I love tinkering with code, scribbling down notes from my experiments, and sharing code snippets that excite me. This blog is my go-to spot for tech thoughts and cool discoveries. Dive in and enjoy!
+Hey there, I'm Kevin, a developer who spends way too much time debugging and way too little time sleeping. I started this blog to dump all the random code experiments, tutorials, and thoughts that pop into my head during late-night coding sessions. Whether it's a weird bug fix, a new framework I'm messing with, or just ranting about tech trends, you'll find it here. Hope you stumble upon something useful or at least entertaining. Stick around!
