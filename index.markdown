@@ -13,7 +13,7 @@ title: welcome! 👋🏼
 </div>
 
 Hey there! Just a code tinkerer sharing experiments, notes, and snippets. Hope you get around :D
-
-> _"You must be the change you wish to see in the world."_ - **Mahatma Gandhi**
+<br class="mobile-only">
+> _"You must be the change you wish to see in the world."_ ~**Mahatma Gandhi**
 {:.lead}
 
