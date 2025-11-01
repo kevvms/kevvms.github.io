@@ -1,4 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-10-29T20:11:40+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kev’s devnotes</title><subtitle>code notes, experiments, and snippets.. you name it.</subtitle><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><entry><title type="html">Local AIs with Ollama</title><link href="http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais.html" rel="alternate" type="text/html" title="Local AIs with Ollama" /><published>2025-10-28T00:00:00+07:00</published><updated>2025-10-28T00:00:00+07:00</updated><id>http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais</id><content type="html" xml:base="http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais.html"><![CDATA[<p>Local AI models are revolutionizing how we interact with artificial intelligence. This devnote explores Ollama, a powerful tool for running AI models locally on your own PC. I’ll cover everything you need to know about getting started with local AI development.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-11-01T15:53:43+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kev’s devnotes</title><subtitle>code notes, experiments, and snippets.. you name it.</subtitle><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><entry><title type="html">When Python isn’t Python-ing</title><link href="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html" rel="alternate" type="text/html" title="When Python isn’t Python-ing" /><published>2025-11-01T00:00:00+07:00</published><updated>2025-11-01T00:00:00+07:00</updated><id>http://localhost:4000/local%20development/python/2025/11/01/weird-python</id><content type="html" xml:base="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html"><![CDATA[<p>Python is known for its straightforwardness and readability, but sometimes.. it just doesn’t make sense! We’ll explore some of these unexpected quirks that make Python just puzzling.</p>
+
+<ol id="markdown-toc">
+  <li><a href="#wait-it-isnt" id="markdown-toc-wait-it-isnt">Wait, It Isn’t?</a></li>
+  <li><a href="#is-this-list-even-mine" id="markdown-toc-is-this-list-even-mine">Is This List Even Mine?</a></li>
+  <li><a href="#yes-but-no" id="markdown-toc-yes-but-no">Yes but No</a></li>
+  <li><a href="#01--02-aint-03" id="markdown-toc-01--02-aint-03">0.1 + 0.2 Ain’t 0.3</a></li>
+  <li><a href="#the-loop-lambda-surprise" id="markdown-toc-the-loop-lambda-surprise">The Loop-Lambda Surprise</a></li>
+  <li><a href="#copying-a-list-with-" id="markdown-toc-copying-a-list-with-">Copying a List with *</a></li>
+  <li><a href="#sneaky-booleans" id="markdown-toc-sneaky-booleans">Sneaky Booleans!</a></li>
+</ol>
+
+<h2 id="wait-it-isnt">Wait, It Isn’t?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">is</code>, a common operator in Python used to check if <em>a</em> equals to <em>b</em>. It should have no problems with anything, right? RIGHT??</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div></div>
+<p>.. this returns:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+<p>But if we add just one to both,</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">257</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">257</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div></div>
+<p>.. it should return <code class="language-plaintext highlighter-rouge">True</code> right? WRONG!</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>False
+</code></pre></div></div>
+<p>The technical reason for this is that Python internally caches small integers (-5 to 256) for optimization reasons. So.. best if you use <code class="language-plaintext highlighter-rouge">==</code> instead.</p>
+
+<h2 id="is-this-list-even-mine">Is This List Even Mine?</h2>
+
+<p>So, you think you’re being clever by using a list as a default argument in your Python function? Well, hold on to your hats, because this can lead to some seriously weird behavior!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_stuff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">my_list</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">my_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">my_list</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">add_stuff</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">add_stuff</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Normal, right? Theoritically, this would output:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>1]
+<span class="o">[</span>2]
+</code></pre></div></div>
+<p>.. but Python says HELL NO!</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>1]
+<span class="o">[</span>1, 2]
+</code></pre></div></div>
+
+<p>What’s happening here is that Python keeps using the same list over and over. Like a shared notebook; everyone’s writing in the same one instead of getting their own.</p>
+
+<p>Let’s make Python give us a new list each time:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_stuff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">my_list</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">my_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">my_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">my_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">my_list</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">add_stuff</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">add_stuff</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+<p>This way, each call to <code class="language-plaintext highlighter-rouge">add_stuff</code> will have its own independent list, preventing the unintended sharing of mutable objects.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>1]
+<span class="o">[</span>2]
+</code></pre></div></div>
+
+<h2 id="yes-but-no">Yes but No</h2>
+<p>Back in Python 2, you could do something truly bizarre:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">True</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>False
+</code></pre></div></div>
+
+<p>Yep, you could make True become False. Why? Because in Python 2, True and False were just variables, not keywords. Thankfully, Python 3 fixed this nonsense.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"&lt;main.py&gt;"</span>, line 1
+    True <span class="o">=</span> False
+    ^^^^
+SyntaxError: cannot assign to True
+</code></pre></div></div>
+
+<h2 id="01--02-aint-03">0.1 + 0.2 Ain’t 0.3</h2>
+
+<p>I mean, it isn’t! (in Python)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">==</span> <span class="mf">0.3</span><span class="p">)</span> <span class="c1"># should return True..
+</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>False
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">)</span> <span class="c1"># then what is it?
+</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.30000000000000004
+</code></pre></div></div>
+
+<p>Decimal fractions like 0.1 can’t be stored exactly in binary, so you get tiny rounding leftovers. The only way to fix this is to round the results, or use the <code class="language-plaintext highlighter-rouge">decimal</code> library.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.3
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Decimal</span><span class="p">(</span><span class="s">'0.1'</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s">'0.2'</span><span class="p">)</span> <span class="o">==</span> <span class="n">Decimal</span><span class="p">(</span><span class="s">'0.3'</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+
+<h2 id="the-loop-lambda-surprise">The Loop-Lambda Surprise</h2>
+
+<p>Make functions in a loop and expect each to remember its own number? Python gives them the last one.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+2
+2
+</code></pre></div></div>
+
+<p>Why? Well, those lambdas all look at the same name i, which ends up as 2. Quick fix: lock the value in a default argument, like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+</code></pre></div></div>
+
+<h2 id="copying-a-list-with-">Copying a List with *</h2>
+
+<p>Using * to “copy” a list with mutable items makes them all point to the same thing.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>1], <span class="o">[</span>1], <span class="o">[</span>1]]
+</code></pre></div></div>
+
+<p>Confusing isn’t it? Each row is the same inner list. Use a comprehension to make independent rows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>1], <span class="o">[</span>0], <span class="o">[</span>0]]
+</code></pre></div></div>
+
+<p>There you go!</p>
+
+<h2 id="sneaky-booleans">Sneaky Booleans!</h2>
+
+<p>True and False act like 1 and 0 for a reason, but sometimes they can go nuts.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="o">+</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+5
+</code></pre></div></div>
+
+<p>There’s no real point in this, just a cool quirk ;)</p>
+
+<p>Well well well, enjoy these little quirks about Python! Now you know, the Python we all know and love sometimes doesn’t make any logic sense.</p>]]></content><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><category term="Local Development" /><category term="Python" /><summary type="html"><![CDATA[Python is known for its straightforwardness and readability, but sometimes.. it just doesn’t make sense! We’ll explore some of these unexpected quirks that make Python just puzzling.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/weird-python.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/weird-python.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Local AIs with Ollama</title><link href="http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais.html" rel="alternate" type="text/html" title="Local AIs with Ollama" /><published>2025-10-28T00:00:00+07:00</published><updated>2025-10-28T00:00:00+07:00</updated><id>http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais</id><content type="html" xml:base="http://localhost:4000/artificial%20intelligence/local%20development/2025/10/28/local-ais.html"><![CDATA[<p>Local AI models are revolutionizing how we interact with artificial intelligence. This devnote explores Ollama, a powerful tool for running AI models locally on your own PC. I’ll cover everything you need to know about getting started with local AI development.</p>
 
 <ol id="markdown-toc">
   <li><a href="#why-local-ai-though" id="markdown-toc-why-local-ai-though">Why Local AI, Though?</a></li>
