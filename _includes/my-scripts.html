@@ -1,0 +1,21 @@
+<script>
+    {% if site.mermaid %}
+    let config = {
+        startOnLoad: true,
+        theme: 'neutral'
+    }
+    mermaid.initialize(config);
+    // Run Mermaid
+    function runMermaid() {
+        mermaid.run({ querySelector: ".mermaid" });
+    }
+    runMermaid();
+    {% endif %}
+    document
+        .getElementById("_pushState")
+        .addEventListener("hy-push-state-load", function () {
+            {% if site.mermaid %}
+            mermaid.run({ querySelector: ".mermaid" });
+            {% endif %}
+        });
+</script>

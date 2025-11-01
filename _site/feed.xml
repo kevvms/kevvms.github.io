@@ -1,4 +1,353 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-11-01T15:56:46+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kev’s devnotes</title><subtitle>code notes, experiments, and snippets.. you name it.</subtitle><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><entry><title type="html">When Python isn’t Python-ing</title><link href="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html" rel="alternate" type="text/html" title="When Python isn’t Python-ing" /><published>2025-11-01T00:00:00+07:00</published><updated>2025-11-01T00:00:00+07:00</updated><id>http://localhost:4000/local%20development/python/2025/11/01/weird-python</id><content type="html" xml:base="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html"><![CDATA[<p>Python is known for its straightforwardness and readability, but sometimes.. it just doesn’t make sense! We’ll explore some of these unexpected quirks that make Python just puzzling.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-11-01T17:24:38+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kev’s devnotes</title><subtitle>code notes, experiments, and snippets.. you name it.</subtitle><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><entry><title type="html">Creating Diagrams with Mermaid</title><link href="http://localhost:4000/local%20development/tools/2025/11/01/mermaid.html" rel="alternate" type="text/html" title="Creating Diagrams with Mermaid" /><published>2025-11-01T00:00:00+07:00</published><updated>2025-11-01T00:00:00+07:00</updated><id>http://localhost:4000/local%20development/tools/2025/11/01/mermaid</id><content type="html" xml:base="http://localhost:4000/local%20development/tools/2025/11/01/mermaid.html"><![CDATA[<p class="note">Use light mode for best diagram visuals.</p>
+<p>Mermaid is a powerful tool for creating diagrams and visualizations using simple text-based syntax. It’s great for documentation, presentations, and web content because it allows you to write diagrams in Markdown-like code that gets rendered as SVG graphics.</p>
+
+<p>Like, check this out!</p>
+<pre class="mermaid">
+pie title What Voldemort doesn't have?
+         "FRIENDS" : 2
+         "FAMILY" : 3
+         "NOSE" : 45
+</pre>
+<p class="note">This chart is taken from <a href="https://docs.mermaidchart.com/mermaid-oss/syntax/examples.html#basic-pie-chart">here.</a></p>
+
+<h2 id="getting-started-with-mermaid">Getting Started with Mermaid</h2>
+
+<p>To use Mermaid, you include a script tag in your HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Then initialize it:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mermaid</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
+    <span class="na">startOnLoad</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">theme</span><span class="p">:</span> <span class="dl">'</span><span class="s1">default</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// options: 'default', 'dark', 'forest', 'neutral'</span>
+    <span class="na">securityLevel</span><span class="p">:</span> <span class="dl">'</span><span class="s1">loose</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// 'strict', 'loose', 'antiscript' - for HTML in labels</span>
+    <span class="na">fontFamily</span><span class="p">:</span> <span class="dl">'</span><span class="s1">arial</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// custom font family</span>
+    <span class="na">themeVariables</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">primaryColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#ff0000</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// customize theme colors</span>
+        <span class="na">primaryTextColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#fff</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">primaryBorderColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#7C0000</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">lineColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#F8B229</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">secondaryColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#006100</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">tertiaryColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#fff</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="na">flowchart</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">useMaxWidth</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">htmlLabels</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">sequence</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">useMaxWidth</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>You don’t need to put all this, just the ones you need!</p>
+
+<h2 id="writing-mermaid-diagrams">Writing Mermaid Diagrams</h2>
+
+<p>Mermaid supports various diagram types like flowcharts, sequence diagrams, Gantt charts, and more. Here’s a simple flowchart example:</p>
+
+<pre class="mermaid">
+flowchart TD
+    A[Start] --&gt; B{Is it working?}
+    B --&gt;|Yes| C[Great!]
+    B --&gt;|No| D[Debug]
+    D --&gt; B
+</pre>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[Start] --&gt; B{Is it working?}
+    B --&gt;|Yes| C[Great!]
+    B --&gt;|No| D[Debug]
+    D --&gt; B
+</code></pre>
+
+<h3 id="sequence-diagrams">Sequence Diagrams</h3>
+<p>Great for showing interactions between actors over time.</p>
+
+<pre class="mermaid">
+sequenceDiagram
+    Alice-&gt;&gt;Bob: Hello Bob, how are you?
+    Bob--&gt;&gt;Alice: I am good thanks!
+</pre>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    Alice-&gt;&gt;Bob: Hello Bob, how are you?
+    Bob--&gt;&gt;Alice: I am good thanks!
+</code></pre>
+
+<h3 id="class-diagrams">Class Diagrams</h3>
+<p>Perfect for object-oriented design.</p>
+
+<pre class="mermaid">
+classDiagram
+    Animal &lt;|-- Duck
+    Animal &lt;|-- Fish
+    Animal &lt;|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        +swim()
+        +String color
+    }
+    class Zebra{
+        +run()
+        +String stripeColor
+    }
+</pre>
+
+<pre><code class="language-mermaid">classDiagram
+    Animal &lt;|-- Duck
+    Animal &lt;|-- Fish
+    Animal &lt;|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        +swim()
+        +String color
+    }
+    class Zebra{
+        +run()
+        +String stripeColor
+    }
+</code></pre>
+
+<h3 id="state-diagrams">State Diagrams</h3>
+<p>For modeling state machines.</p>
+
+<pre class="mermaid">
+stateDiagram-v2
+    [*] --&gt; Still
+    Still --&gt; [*]
+    Still --&gt; Moving
+    Moving --&gt; Still
+    Moving --&gt; Crash
+    Crash --&gt; [*]
+</pre>
+
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Still
+    Still --&gt; [*]
+    Still --&gt; Moving
+    Moving --&gt; Still
+    Moving --&gt; Crash
+    Crash --&gt; [*]
+</code></pre>
+
+<h3 id="entity-relationship-diagrams">Entity Relationship Diagrams</h3>
+<p>For database modeling.</p>
+
+<pre class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER {
+        string name
+        string custNumber
+        string sector
+    }
+</pre>
+
+<pre><code class="language-mermaid">erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER {
+        string name
+        string custNumber
+        string sector
+    }
+</code></pre>
+
+<h3 id="gantt-charts">Gantt Charts</h3>
+<p>For project timelines and schedules.</p>
+
+<pre class="mermaid">
+gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Section
+    A task          :a1, 2014-01-01, 30d
+    Another task    :after a1, 20d
+    section Another
+    Task in Another :2014-01-12, 12d
+    another task    :24d
+</pre>
+
+<pre><code class="language-mermaid">gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Section
+    A task          :a1, 2014-01-01, 30d
+    Another task    :after a1, 20d
+    section Another
+    Task in Another :2014-01-12, 12d
+    another task    :24d
+</code></pre>
+
+<h3 id="pie-charts">Pie Charts</h3>
+<p>For data visualization.</p>
+
+<pre class="mermaid">
+pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+</pre>
+
+<pre><code class="language-mermaid">pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+</code></pre>
+
+<h3 id="mind-maps">Mind Maps</h3>
+<p>For brainstorming and organizing ideas.</p>
+
+<pre class="mermaid">
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+</pre>
+
+<pre><code class="language-mermaid">mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+</code></pre>
+
+<h3 id="user-journey">User Journey</h3>
+<p>For user experience mapping.</p>
+
+<pre class="mermaid">
+journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</pre>
+
+<pre><code class="language-mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</code></pre>
+
+<h3 id="gitgraph">Gitgraph</h3>
+<p>For visualizing Git branches.</p>
+
+<pre class="mermaid">
+gitGraph
+    commit id: "Initial commit"
+    branch develop
+    checkout develop
+    commit id: "Add feature"
+    checkout main
+    merge develop
+</pre>
+
+<pre><code class="language-mermaid">gitGraph
+    commit id: "Initial commit"
+    branch develop
+    checkout develop
+    commit id: "Add feature"
+    checkout main
+    merge develop
+</code></pre>
+
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+
+<p>Mermaid offers extensive customization options. Here are some key settings you can adjust:</p>
+
+<h3 id="themes">Themes</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">theme</code>: Choose from ‘default’, ‘dark’, ‘forest’, ‘neutral’</li>
+  <li><code class="language-plaintext highlighter-rouge">themeVariables</code>: Override specific colors for fine-tuned styling</li>
+</ul>
+
+<h3 id="security-and-html">Security and HTML</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">securityLevel</code>: ‘strict’ (no HTML), ‘loose’ (allow HTML), ‘antiscript’ (allow scripts)</li>
+  <li><code class="language-plaintext highlighter-rouge">htmlLabels</code>: Enable HTML in node labels</li>
+</ul>
+
+<h3 id="layout-options">Layout Options</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">flowchart.useMaxWidth</code>: Allow diagrams to expand to full width</li>
+  <li><code class="language-plaintext highlighter-rouge">sequence.useMaxWidth</code>: Same for sequence diagrams</li>
+  <li><code class="language-plaintext highlighter-rouge">gantt.useMaxWidth</code>: For Gantt charts</li>
+</ul>
+
+<h3 id="fonts-and-styling">Fonts and Styling</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fontFamily</code>: Set custom font</li>
+  <li><code class="language-plaintext highlighter-rouge">themeVariables</code>: Customize colors, borders, backgrounds</li>
+</ul>
+
+<p>You can also configure diagram-specific options like arrow styles, node shapes, and spacing.</p>
+
+<h2 id="integration-tips">Integration Tips</h2>
+
+<ul>
+  <li>Mermaid diagrams are responsive and accessible</li>
+  <li>They render as SVG, so they’re scalable</li>
+  <li>You can style them with CSS</li>
+  <li>Many platforms like GitHub, GitLab, and documentation tools support Mermaid natively</li>
+</ul>
+
+<p>Mermaid makes it easy to add professional-looking diagrams to your projects without needing graphic design skills. Just write the code, and let Mermaid handle the rendering!</p>
+
+<p>Anyways, check out the full docs <a href="https://docs.mermaidchart.com/mermaid-oss/intro/index.html">here.</a> There’s so much more types of diagram that Mermaid can implement!</p>]]></content><author><name>kev</name><email>kevinm.s@outlook.co.id</email></author><category term="Local Development" /><category term="Tools" /><summary type="html"><![CDATA[Use light mode for best diagram visuals. Mermaid is a powerful tool for creating diagrams and visualizations using simple text-based syntax. It’s great for documentation, presentations, and web content because it allows you to write diagrams in Markdown-like code that gets rendered as SVG graphics.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/mermaid.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/mermaid.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">When Python isn’t Python-ing</title><link href="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html" rel="alternate" type="text/html" title="When Python isn’t Python-ing" /><published>2025-11-01T00:00:00+07:00</published><updated>2025-11-01T00:00:00+07:00</updated><id>http://localhost:4000/local%20development/python/2025/11/01/weird-python</id><content type="html" xml:base="http://localhost:4000/local%20development/python/2025/11/01/weird-python.html"><![CDATA[<p>Python is known for its straightforwardness and readability, but sometimes.. it just doesn’t make sense! We’ll explore some of these unexpected quirks that make Python just puzzling.</p>
 
 <ol id="markdown-toc">
   <li><a href="#wait-it-isnt" id="markdown-toc-wait-it-isnt">Wait, It Isn’t?</a></li>
